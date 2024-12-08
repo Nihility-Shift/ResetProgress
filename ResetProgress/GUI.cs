@@ -44,6 +44,7 @@ namespace ResetProgress
             if (ThirdAsk && GUILayout.Button("This is the final button. There is no going back."))
             {
                 DebugInput.CloudProfileReset();
+                DebugInput.AchievementsReset();
             }
         }
     }
