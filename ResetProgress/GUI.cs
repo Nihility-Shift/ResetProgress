@@ -25,8 +25,8 @@ namespace ResetProgress
         public override void Draw()
         {
             GUILayout.Label("Reset Profile Menu");
-            GUILayout.Label("There will be no going back.");
-            if (GUILayout.Button("Reset Progress?"))
+            GUILayout.Label("Levels, cosmetics, and achievements will all be reset. There will be no going back.");
+            if (GUILayout.Button("Reset Account?"))
             {
                 FirstAsk = true;
             }

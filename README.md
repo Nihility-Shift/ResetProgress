@@ -14,7 +14,7 @@ Requires:  BepInEx-BepInExPack-5.4.2100, VoidCrewModdingTeam-VoidManager-1.2.4
 
 ### 💡 Function(s)
 
-- Allows user to reset their player profile.
+- Allows user to reset their player profile (levels, cosmetics, acheivements, etc) via the F5 menu.
 
 ### 🎮 Client Usage
 
