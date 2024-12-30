@@ -4,7 +4,7 @@
     <AssemblyName>ResetProgress</AssemblyName>
     <Description>
     </Description>
-    <Version>1.0.1</Version>
+    <Version>1.1.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <RestoreAdditionalProjectSources>
@@ -13,7 +13,7 @@
       https://nuget.samboy.dev/v3/index.json
     </RestoreAdditionalProjectSources>
     <RootNamespace>ResetProgress</RootNamespace>
-    <AssemblyTitle>Allows user to reset their player profile (levels, cosmetics, acheivements, etc) via the F5 menu.</AssemblyTitle>
+    <AssemblyTitle>Allows user to reset their experience or entire player profile (levels, cosmetics, acheivements, etc) via the F5 menu.</AssemblyTitle>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>embedded</DebugType>
