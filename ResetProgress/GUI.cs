@@ -1,6 +1,6 @@
 ﻿using CG.Client.Player.Input;
+using CG.Cloud;
 using CG.Profile;
-using UnityEngine;
 using VoidManager.CustomGUI;
 using static UnityEngine.GUILayout;
 
@@ -29,7 +29,19 @@ namespace ResetProgress
             Label("Reset xp Menu");
             BeginHorizontal();
             Label($"Current xp: {PlayerProfile.Instance.Profile.Xp}");
-            if (Button("Reset")) PlayerProfile.Instance.Profile.AddXp((long)Mathf.Max(0, (0 - PlayerProfile.Instance.Profile.Xp)));
+            if (Button("Reset XP"))
+            {
+                if (PlayerProfile.Instance.Profile is CloudPlayerProfileDataSync cloudProfile && cloudProfile.source is PhotonPlayerDataSync photonProfile && photonProfile.source is PlayerProfileData baseProfile)
+                {
+                    baseProfile.Xp = 0;
+                    cloudProfile.AddXp(0);
+                }
+                else
+                {
+                    BepinPlugin.log.LogError("Could not reset player XP");
+                }
+            }
+
             EndHorizontal();
             HorizontalSlider(0, 100, 100);
             
@@ -54,6 +66,7 @@ namespace ResetProgress
             {
                 DebugInput.CloudProfileReset();
                 DebugInput.AchievementsReset();
+                OnOpen();
             }
         }
     }

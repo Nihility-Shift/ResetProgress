@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using BepInEx.Logging;
 using VoidManager;
 using VoidManager.MPModChecks;
 
@@ -9,10 +10,13 @@ namespace ResetProgress
     [BepInDependency(VoidManager.MyPluginInfo.PLUGIN_GUID)]
     public class BepinPlugin : BaseUnityPlugin
     {
+        internal static ManualLogSource log;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "N/A")]
         private void Awake()
         {
-            Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
+            log = Logger;
+            log.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
         }
     }
 
