@@ -1,6 +1,8 @@
 ﻿using CG.Client.Player.Input;
+using CG.Profile;
 using UnityEngine;
 using VoidManager.CustomGUI;
+using static UnityEngine.GUILayout;
 
 namespace ResetProgress
 {
@@ -24,24 +26,31 @@ namespace ResetProgress
 
         public override void Draw()
         {
-            GUILayout.Label("Reset Profile Menu");
-            GUILayout.Label("Levels, cosmetics, and achievements will all be reset. There will be no going back.");
-            if (GUILayout.Button("Reset Account?"))
+            Label("Reset xp Menu");
+            BeginHorizontal();
+            Label($"Current xp: {PlayerProfile.Instance.Profile.Xp}");
+            if (Button("Reset")) PlayerProfile.Instance.Profile.AddXp((long)Mathf.Max(0, (0 - PlayerProfile.Instance.Profile.Xp)));
+            EndHorizontal();
+            HorizontalSlider(0, 100, 100);
+            
+            Label("Reset Profile Menu");
+            Label("Levels, cosmetics, and achievements will all be reset. There will be no going back.");
+            if (Button("Reset Account?"))
             {
                 FirstAsk = true;
             }
 
-            if (FirstAsk && GUILayout.Button("Are you sure?"))
+            if (FirstAsk && Button("Are you sure?"))
             {
                 SecondAsk = true;
             }
 
-            if (SecondAsk && GUILayout.Button("Are you REALLY sure?!?"))
+            if (SecondAsk && Button("Are you REALLY sure?!?"))
             {
                 ThirdAsk = true;
             }
 
-            if (ThirdAsk && GUILayout.Button("This is the final button. There is no going back."))
+            if (ThirdAsk && Button("This is the final button. There is no going back."))
             {
                 DebugInput.CloudProfileReset();
                 DebugInput.AchievementsReset();
