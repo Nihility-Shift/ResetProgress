@@ -1,5 +1,6 @@
 ﻿using CG.Client.Player.Input;
 using CG.Cloud;
+using CG.Game;
 using CG.Profile;
 using VoidManager.CustomGUI;
 using static UnityEngine.GUILayout;
@@ -38,7 +39,7 @@ namespace ResetProgress
                     if (GameSessionManager.ActiveSession != null)
                     {
                         ClientGame.Current.ModelEventBus.OnRankChanged.Publish();
-                }
+                    }
                 }
                 else
                 {
@@ -58,6 +59,23 @@ namespace ResetProgress
                 if (PlayerProfile.Instance.Profile is CloudPlayerProfileDataSync cloudProfile && cloudProfile.source is PhotonPlayerDataSync photonProfile && photonProfile.source is PlayerProfileData baseProfile)
                 {
                     baseProfile.Rank = 0;
+                    baseProfile.FavorRank = 0;
+                    cloudProfile.AddXp(0);
+                    if (GameSessionManager.ActiveSession != null)
+                    {
+                        ClientGame.Current.ModelEventBus.OnRankChanged.Publish();
+                    }
+                }
+                else
+                {
+                    BepinPlugin.log.LogError("Could not reset player Level");
+                }
+            }
+
+            if (Button("Reset Favor Level only"))
+            {
+                if (PlayerProfile.Instance.Profile is CloudPlayerProfileDataSync cloudProfile && cloudProfile.source is PhotonPlayerDataSync photonProfile && photonProfile.source is PlayerProfileData baseProfile)
+                {
                     baseProfile.FavorRank = 0;
                     cloudProfile.AddXp(0);
                     if (GameSessionManager.ActiveSession != null)
