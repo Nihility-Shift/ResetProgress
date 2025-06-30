@@ -1,3 +1,7 @@
+## 1.2.0
+- Added Level Reset option
+- Attempted some fixes for level resetting
+
 ## 1.1.0
 - Added XP Reset option
 

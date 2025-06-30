@@ -44,7 +44,7 @@ namespace ResetProgress
 
             EndHorizontal();
             HorizontalSlider(0, 100, 100);
-            
+
 
             Label("Reset Level Menu");
             BeginHorizontal();
