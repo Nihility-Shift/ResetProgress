@@ -86,6 +86,18 @@ namespace ResetProgress
 
             if (ThirdAsk && Button("This is the final button. There is no going back."))
             {
+                if (PlayerProfile.Instance.Profile is CloudPlayerProfileDataSync cloudProfile && cloudProfile.source is PhotonPlayerDataSync photonProfile && photonProfile.source is PlayerProfileData baseProfile)
+                {
+                    baseProfile.Xp = 0;
+                    baseProfile.Rank = 0;
+                    baseProfile.FavorRank = 0;
+                    cloudProfile.AddXp(0);
+                }
+                else
+                {
+                    BepinPlugin.log.LogError("Could not reset player Level/xp in total reset");
+                }
+
                 DebugInput.AchievementsReset();
                 DebugInput.CloudProfileReset();
                 OnOpen();
