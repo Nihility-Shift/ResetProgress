@@ -45,6 +45,28 @@ namespace ResetProgress
             EndHorizontal();
             HorizontalSlider(0, 100, 100);
             
+
+            Label("Reset Level Menu");
+            BeginHorizontal();
+            Label($"Current Level: {PlayerProfile.Instance.Profile.Rank} : {PlayerProfile.Instance.Profile.FavorRank}");
+            if (Button("Reset Level"))
+            {
+                if (PlayerProfile.Instance.Profile is CloudPlayerProfileDataSync cloudProfile && cloudProfile.source is PhotonPlayerDataSync photonProfile && photonProfile.source is PlayerProfileData baseProfile)
+                {
+                    baseProfile.Rank = 0;
+                    baseProfile.FavorRank = 0;
+                    cloudProfile.AddXp(0);
+                }
+                else
+                {
+                    BepinPlugin.log.LogError("Could not reset player Level");
+                }
+            }
+
+            EndHorizontal();
+            HorizontalSlider(0, 100, 100);
+
+
             Label("Reset Profile Menu");
             Label("Levels, cosmetics, and achievements will all be reset. There will be no going back.");
             if (Button("Reset Account?"))
