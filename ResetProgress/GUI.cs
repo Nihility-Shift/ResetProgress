@@ -35,6 +35,10 @@ namespace ResetProgress
                 {
                     baseProfile.Xp = 0;
                     cloudProfile.AddXp(0);
+                    if (GameSessionManager.ActiveSession != null)
+                    {
+                        ClientGame.Current.ModelEventBus.OnRankChanged.Publish();
+                }
                 }
                 else
                 {
@@ -56,6 +60,10 @@ namespace ResetProgress
                     baseProfile.Rank = 0;
                     baseProfile.FavorRank = 0;
                     cloudProfile.AddXp(0);
+                    if (GameSessionManager.ActiveSession != null)
+                    {
+                        ClientGame.Current.ModelEventBus.OnRankChanged.Publish();
+                    }
                 }
                 else
                 {
@@ -100,6 +108,10 @@ namespace ResetProgress
 
                 DebugInput.AchievementsReset();
                 DebugInput.CloudProfileReset();
+                if (GameSessionManager.ActiveSession != null)
+                {
+                    ClientGame.Current.ModelEventBus.OnRankChanged.Publish();
+                }
                 OnOpen();
             }
         }
