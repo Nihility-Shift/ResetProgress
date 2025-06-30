@@ -1,3 +1,7 @@
+## 1.2.1
+- Added favor reset only option
+- added display update calls
+
 ## 1.2.0
 - Added Level Reset option
 - Attempted some fixes for level resetting
